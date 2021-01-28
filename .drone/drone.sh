@@ -31,9 +31,10 @@ python tools/boostdep/depinst/depinst.py mpi
 
 echo '==================================> SCRIPT'
 
+export PROC_MOUNT_LINE_LEN=2000
 echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
 echo "using mpi : mpic++.openmpi : : mpirun.openmpi --allow-run-as-root ;" >> ~/user-config.jam
-mpirun.openmpi --version
+mpirun.openmpi --allow-run-as-root --version
 ./b2 -j3 libs/mpi/test toolset=$TOOLSET cxxstd=$CXXSTD variant=release
 
 fi
